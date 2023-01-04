@@ -1,0 +1,74 @@
+@import "./variables";
+@import "./mixins";
+
+.hide {
+  // display: none !important;
+  visibility: hidden;
+  z-index: -10;
+}
+
+.modal-container {
+  .fade-in {
+    animation: fadeIn 1s;
+  }
+
+  position: fixed;
+  top: 0;
+  @include flex();
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.263);
+  .modal {
+    @include rounded;
+    background-color: white;
+    width: 500px;
+    height: 300px;
+    box-shadow: 0 5px 10px 5px rgba(35, 35, 35, 0.341);
+    overflow: hidden;
+
+    .header {
+      @include flex($jc: space-between);
+      padding: 20px;
+      background-color: $primary-color;
+      color: white;
+      i {
+        font-size: 2rem;
+      }
+    }
+    .content {
+      padding: 0 20px 20px;
+    }
+    button {
+      @include rounded;
+      background-color: $primary-color;
+      color: white;
+      float: right;
+      padding: 5px 20px;
+      border: none;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.256);
+      &:hover {
+        background-color: $secondary-color;
+      }
+      &:disabled {
+        background-color: gray;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modal {
+    width: 90vw !important;
+  }
+}
